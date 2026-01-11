@@ -21,6 +21,28 @@
         "time": "O(n)",
         "space": "O(n)"
       }
+    },
+    {
+      "id": "three-sum",
+      "title": "Three Sum",
+      "difficulty": "Medium",
+      "language": "js",
+      "solvedAt": "2026-01-11T16:38:28.467Z",
+      "complexity": {
+        "time": "O(n)",
+        "space": "O(n)"
+      }
+    },
+    {
+      "id": "three-sum",
+      "title": "Three Sum",
+      "difficulty": "Medium",
+      "language": "python",
+      "solvedAt": "2026-01-11T16:42:21.644Z",
+      "complexity": {
+        "time": "O(n)",
+        "space": "O(n)"
+      }
     }
   ]
 }

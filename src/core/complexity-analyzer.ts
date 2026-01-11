@@ -31,8 +31,10 @@ export class ComplexityAnalyzer {
     let space = 'O(n)';
 
     // Check for nested loops (O(n²) time)
-    const nestedLoopPattern = /for\s*\([^)]*\)\s*{[^}]*for\s*\([^)]*\)/s;
-    if (nestedLoopPattern.test(code)) {
+    const nestedForLoop = /for\s*\([^)]*\)\s*{[^}]*for\s*\([^)]*\)/s;
+    const forWhileLoop = /for\s*\([^)]*\)\s*{[^}]*while\s*\(/s;
+    
+    if (nestedForLoop.test(code) || forWhileLoop.test(code)) {
       time = 'O(n²)';
     }
 
@@ -61,8 +63,10 @@ export class ComplexityAnalyzer {
     let space = 'O(n)';
 
     // Check for nested loops (O(n²) time)
-    const nestedLoopPattern = /for\s+\w+\s+in\s+[^:]+:[^]*?for\s+\w+\s+in\s+/s;
-    if (nestedLoopPattern.test(code)) {
+    const nestedForLoop = /for\s+\w+\s+in\s+[^:]+:[^]*?for\s+\w+\s+in\s+/s;
+    const forWhileLoop = /for\s+\w+\s+in\s+[^:]+:[^]*?while\s+/s;
+    
+    if (nestedForLoop.test(code) || forWhileLoop.test(code)) {
       time = 'O(n²)';
     }
 

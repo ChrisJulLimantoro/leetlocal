@@ -9,6 +9,9 @@ export interface ProblemMetadata {
     name: string;
     params: string[];
   };
+  comparison?: {
+    unordered?: boolean; // If true, array order doesn't matter
+  };
 }
 
 export interface TestCase {

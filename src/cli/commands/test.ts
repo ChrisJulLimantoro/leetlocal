@@ -50,14 +50,17 @@ export async function testCommand(
     // Analyze complexity
     const complexityAnalysis = analyzer.analyzeSolution(solutionPath, language);
 
+    // Check if unordered comparison is enabled
+    const unordered = problem.comparison?.unordered || false;
+
     // Run tests based on language
     let results;
     if (language === 'js') {
       const runner = new JavaScriptRunner();
-      results = runner.runTests(solutionPath, tests);
+      results = runner.runTests(solutionPath, tests, unordered);
     } else {
       const runner = new PythonRunner();
-      results = await runner.runTests(solutionPath, tests, problem);
+      results = await runner.runTests(solutionPath, tests, problem, unordered);
     }
 
     // Report results with complexity analysis

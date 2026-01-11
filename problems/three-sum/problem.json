@@ -1,0 +1,12 @@
+{
+  "id": "three-sum",
+  "title": "Three Sum",
+  "difficulty": "Medium",
+  "function": {
+    "name": "threeSum",
+    "params": ["nums"]
+  },
+  "comparison": {
+    "unordered": true
+  }
+}

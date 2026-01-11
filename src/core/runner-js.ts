@@ -14,7 +14,7 @@ export class JavaScriptRunner {
   /**
    * Run tests for a JavaScript solution
    */
-  runTests(solutionPath: string, tests: TestCase[]): TestResult[] {
+  runTests(solutionPath: string, tests: TestCase[], unordered: boolean = false): TestResult[] {
     const absolutePath = path.resolve(solutionPath);
     
     // Clear require cache to get fresh module
@@ -40,8 +40,8 @@ export class JavaScriptRunner {
         // Execute function with test inputs
         const actual = solutionFn(...test.input);
         
-        // Deep compare
-        const passed = this.deepEqual(actual, test.output);
+        // Deep compare (with optional unordered comparison)
+        const passed = this.deepEqual(actual, test.output, unordered);
 
         results.push({
           passed,
@@ -68,15 +68,27 @@ export class JavaScriptRunner {
   /**
    * Deep equality check for test outputs
    */
-  private deepEqual(a: any, b: any): boolean {
+  private deepEqual(a: any, b: any, unordered: boolean = false): boolean {
     if (a === b) return true;
     
     if (a == null || b == null) return false;
     
     if (Array.isArray(a) && Array.isArray(b)) {
       if (a.length !== b.length) return false;
+      
+      // Unordered comparison: sort arrays before comparing
+      if (unordered) {
+        const sortedA = this.sortArrayDeep([...a]);
+        const sortedB = this.sortArrayDeep([...b]);
+        for (let i = 0; i < sortedA.length; i++) {
+          if (!this.deepEqual(sortedA[i], sortedB[i], unordered)) return false;
+        }
+        return true;
+      }
+      
+      // Ordered comparison
       for (let i = 0; i < a.length; i++) {
-        if (!this.deepEqual(a[i], b[i])) return false;
+        if (!this.deepEqual(a[i], b[i], unordered)) return false;
       }
       return true;
     }
@@ -89,11 +101,27 @@ export class JavaScriptRunner {
       
       for (const key of keysA) {
         if (!keysB.includes(key)) return false;
-        if (!this.deepEqual(a[key], b[key])) return false;
+        if (!this.deepEqual(a[key], b[key], unordered)) return false;
       }
       return true;
     }
     
     return false;
+  }
+
+  /**
+   * Deep sort arrays for unordered comparison
+   */
+  private sortArrayDeep(arr: any[]): any[] {
+    return arr.map(item => {
+      if (Array.isArray(item)) {
+        return this.sortArrayDeep([...item]);
+      }
+      return item;
+    }).sort((a, b) => {
+      const aStr = JSON.stringify(a);
+      const bStr = JSON.stringify(b);
+      return aStr.localeCompare(bStr);
+    });
   }
 }
