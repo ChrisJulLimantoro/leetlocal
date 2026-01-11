@@ -289,11 +289,23 @@ npm run stats
 ## Makefile Shortcuts
 
 ```bash
+# Show all available commands
+make help
+
+# Create a new problem
+make add
+
 # Generate solution
 make gen problem=two-sum lang=js
 
 # Run tests
 make test problem=two-sum lang=python
+
+# List problems
+make list
+
+# Show progress stats
+make stats
 ```
 
 ## Tips
