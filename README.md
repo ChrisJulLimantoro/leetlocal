@@ -118,6 +118,28 @@ npm run add
 
 Follow the interactive prompts to create a new problem with all necessary files.
 
+**After creating a problem:**
+
+1. **Edit `problem.md`** - Add detailed description, examples, constraints
+2. **Edit `tests.json`** - Add test cases with input/output pairs
+3. **Generate solution** - `npm run gen <problem-id> -- --lang js`
+4. **Add helpers if needed** - For tree/list problems, add imports:
+
+   **Python:**
+   ```python
+   import sys
+   sys.path.insert(0, '../../helpers')
+   from python_helpers import TreeNode, ListNode
+   ```
+
+   **JavaScript:**
+   ```javascript
+   const { TreeNode, ListNode } = require('../../helpers/js_helpers');
+   ```
+
+5. **Implement solution** - Write your algorithm
+6. **Test** - `npm run test <problem-id> -- --lang js`
+
 ### Manual Way
 
 ### 1. Create problem directory
@@ -169,20 +191,29 @@ npm run add
 # - problems/<id>/problem.md - Add description and examples
 # - problems/<id>/tests.json - Add test cases
 
-# 4. Generate JavaScript solution
+# 4. Generate solution template
 npm run gen <problem-id> -- --lang js
 
-# 5. Edit problems/<problem-id>/solutions/js/solution.js
-# Implement your solution...
+# 5. Add helper imports if needed (tree/list problems)
+# For Python:
+#   import sys
+#   sys.path.insert(0, '../../helpers')
+#   from python_helpers import TreeNode, ListNode
+#
+# For JavaScript:
+#   const { TreeNode, ListNode } = require('../../helpers/js_helpers');
 
-# 6. Test it
+# 6. Implement your solution
+# Edit problems/<problem-id>/solutions/js/solution.js
+
+# 7. Test it
 npm run test <problem-id> -- --lang js
 
 # Output:
+# 📊 Complexity Analysis: O(n) time, O(n) space
 # ✓ Test 1: PASSED
 # ✓ Test 2: PASSED
-# ✓ Test 3: PASSED
-# ✓ All tests passed! (3/3)
+# ✓ All tests passed!
 ```
 
 ## Requirements
@@ -307,6 +338,109 @@ make list
 # Show progress stats
 make stats
 ```
+
+## Helper Classes and Libraries
+
+LeetLocal keeps solution templates **clean and minimal**. Helper classes are available **only when you need them**.
+
+### When to Use Helpers
+
+✅ **Use helpers for:**
+- Binary tree problems → `TreeNode`
+- Linked list problems → `ListNode`
+- Graph problems → `Node`
+- Doubly-linked list → `DLNode`
+
+❌ **Don't use for:**
+- Array/string problems
+- Hash map/set problems
+- Math/number problems
+
+### How to Use Helper Classes
+
+Helper classes are in the `helpers/` directory. Import them only when needed:
+
+#### Python
+
+```python
+# Add at the top of your solution
+import sys
+sys.path.insert(0, '../../helpers')
+from python_helpers import TreeNode, ListNode
+
+def isSymmetric(root):
+    # Now you can use TreeNode
+    if not root:
+        return True
+    # ... your solution
+```
+
+**Available classes:**
+- `TreeNode` - Binary tree node (val, left, right)
+- `ListNode` - Singly-linked list (val, next)
+- `DLNode` - Doubly-linked list (val, prev, next)
+- `Node` - Graph node (val, neighbors)
+
+#### JavaScript
+
+```javascript
+// Add at the top of your solution
+const { TreeNode, ListNode } = require('../../helpers/js_helpers');
+
+module.exports = function isSymmetric(root) {
+  // Now you can use TreeNode
+  if (!root) return true;
+  // ... your solution
+};
+```
+
+**Available classes:**
+- `TreeNode` - Binary tree node (val, left, right)
+- `ListNode` - Singly-linked list (val, next)
+- `DLNode` - Doubly-linked list (val, prev, next)
+- `Node` - Graph node (val, neighbors)
+
+### Using Standard Libraries
+
+**Python:**
+```python
+import heapq
+import collections
+from typing import List, Optional, Dict
+from itertools import combinations
+```
+
+**JavaScript:**
+```javascript
+// Built-in modules work automatically
+const map = new Map();
+const set = new Set();
+```
+
+### Example: Tree Problem
+
+**Simple array problem (no helpers needed):**
+```python
+def twoSum(nums, target):
+    seen = {}
+    for i, num in enumerate(nums):
+        # ... clean, no imports
+```
+
+**Tree problem (with helpers):**
+```python
+import sys
+sys.path.insert(0, '../../helpers')
+from python_helpers import TreeNode
+
+def isSymmetric(root):
+    def isMirror(left, right):
+        if not left and not right:
+            return True
+        # ... use TreeNode
+```
+
+See [HELPERS.md](file:///Users/ceje/leetlocal/HELPERS.md) for more examples.
 
 ## Tips
 
