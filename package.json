@@ -1,0 +1,28 @@
+{
+  "name": "leetlocal",
+  "version": "1.0.0",
+  "description": "Local LeetCode-style practice tool",
+  "main": "dist/cli/index.js",
+  "bin": {
+    "leetlocal": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "add": "ts-node src/cli/index.ts add",
+    "gen": "ts-node src/cli/index.ts gen",
+    "test": "ts-node src/cli/index.ts test",
+    "list": "ts-node src/cli/index.ts list",
+    "stats": "ts-node src/cli/index.ts stats"
+  },
+  "keywords": ["leetcode", "cli", "practice", "algorithms"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

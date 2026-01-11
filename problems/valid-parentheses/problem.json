@@ -1,0 +1,11 @@
+{
+  "id": "valid-parentheses",
+  "title": "Valid Parentheses",
+  "difficulty": "Easy",
+  "function": {
+    "name": "isValid",
+    "params": [
+      "s"
+    ]
+  }
+}

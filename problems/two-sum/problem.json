@@ -1,0 +1,9 @@
+{
+  "id": "two-sum",
+  "title": "Two Sum",
+  "difficulty": "Easy",
+  "function": {
+    "name": "twoSum",
+    "params": ["nums", "target"]
+  }
+}

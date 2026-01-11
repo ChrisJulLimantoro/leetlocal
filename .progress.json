@@ -1,0 +1,26 @@
+{
+  "solved": [
+    {
+      "id": "two-sum",
+      "title": "Two Sum",
+      "difficulty": "Easy",
+      "language": "js",
+      "solvedAt": "2026-01-11T12:56:31.454Z",
+      "complexity": {
+        "time": "O(n)",
+        "space": "O(n)"
+      }
+    },
+    {
+      "id": "two-sum",
+      "title": "Two Sum",
+      "difficulty": "Easy",
+      "language": "python",
+      "solvedAt": "2026-01-11T12:56:52.296Z",
+      "complexity": {
+        "time": "O(n)",
+        "space": "O(n)"
+      }
+    }
+  ]
+}
