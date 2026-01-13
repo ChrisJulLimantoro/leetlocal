@@ -1,0 +1,11 @@
+{
+  "id": "reverse-integer",
+  "title": "Reverse Integer",
+  "difficulty": "Medium",
+  "function": {
+    "name": "reverse",
+    "params": [
+      "x"
+    ]
+  }
+}

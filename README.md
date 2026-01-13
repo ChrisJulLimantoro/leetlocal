@@ -2,6 +2,14 @@
 
 A local LeetCode-style practice tool that lets you solve coding problems offline with your favorite editor.
 
+## Why LeetLocal?
+
+- 🏠 **Practice Offline** - Work on problems without internet dependency
+- 📊 **Track Progress** - Automatic complexity analysis and progress tracking
+- 💾 **Version Control** - Commit your solutions and track improvements over time
+- 🚀 **Fast Iteration** - Instant local testing with sampling mode
+- 🎯 **Personal Growth** - See your learning journey with stats and GitHub integration
+
 ## Features
 
 - 📝 **File-based problems** - Problems defined in simple Markdown and JSON
@@ -34,7 +42,20 @@ npm run build
 npm run list
 ```
 
-### 2. Create a new problem (optional)
+### 2. Scrape a problem from LeetCode (optional)
+
+```bash
+npm run scrape <problem-slug>
+# Example: npm run scrape reverse-integer
+```
+
+This will:
+- Fetch problem from LeetCode's GraphQL API
+- Generate `problem.md` with description
+- Generate `problem.json` with metadata
+- Create `tests.json` template (you'll need to add test cases)
+
+### 3. Create a new problem manually (optional)
 
 ```bash
 npm run add
@@ -96,7 +117,7 @@ leetlocal/
 │       ├── problem.md     # Human-readable description
 │       ├── problem.json   # Metadata and function signature
 │       ├── tests.json     # Test cases
-│       └── solutions/     # Your solutions (gitignored)
+│       └── solutions/     # Your solutions (tracked in git!)
 │           ├── js/
 │           └── python/
 ├── templates/             # Solution templates
@@ -222,6 +243,27 @@ npm run test <problem-id> -- --lang js
 - **Python** 3.7+ (for Python solutions)
 
 ## CLI Commands
+
+### `scrape <problem-slug>`
+
+Fetch a problem from LeetCode and generate files automatically.
+
+**Example:**
+```bash
+npm run scrape reverse-integer
+npm run scrape two-sum
+```
+
+**What it does:**
+- Fetches problem from LeetCode GraphQL API
+- Converts HTML description to Markdown
+- Extracts function signature automatically
+- Creates problem directory structure
+- Generates `problem.md`, `problem.json`, `tests.json`
+
+**Note:** You'll need to manually add test cases to `tests.json` as LeetCode's API doesn't provide all test cases publicly.
+
+---
 
 ### `add`
 
@@ -444,20 +486,32 @@ See [HELPERS.md](file:///Users/ceje/leetlocal/HELPERS.md) for more examples.
 
 ## Tips
 
-- Solutions are gitignored by default - commit your own if desired
-- Use `problem.md` to read the problem description
-- Test cases are in `tests.json` - add more if needed
-- Templates are in `templates/` - customize them to your style
+- **Commit your solutions** - Your solutions are now tracked in git, commit often to see your progress!
+- **Use sampling mode** - Quick iteration with `--sample` flag during development
+- **Review complexity** - Learn to recognize O(n) patterns in your code
+- **Track stats** - Run `npm run stats` to see your progress and share on GitHub
+- **Scrape problems** - Use `npm run scrape` to quickly add new problems from LeetCode
 
-## What's NOT Included
+## Personal Progress Tracking
 
-- Web UI
-- Database
-- Online judge integration
-- Authentication
-- Docker containers
+This tool is designed for personal learning and progress tracking:
 
-This is intentionally minimal - just you, your editor, and the terminal.
+1. **Solutions are committed** - Track your journey and see improvements over time
+2. **Progress file** - `.progress.json` stores your solved problems
+3. **GitHub integration** - Share your stats on your profile README
+4. **Local first** - Practice offline, commit when ready
+
+## Project Purpose
+
+LeetLocal started as a personal tool to track LeetCode progress locally and evolved into a full practice environment. It's designed to help you:
+
+- Practice problems offline with your favorite editor
+- Track your learning journey in version control
+- Analyze your solution complexity automatically
+- Build a portfolio of solutions you can commit and share
+- Generate GitHub-ready stats to showcase your progress
+
+Feel free to fork and customize for your own learning needs!
 
 ## License
 

@@ -8,17 +8,26 @@
   },
   "scripts": {
     "build": "tsc",
+    "scrape": "ts-node scripts/scrape-leetcode.ts",
     "add": "ts-node src/cli/index.ts add",
     "gen": "ts-node src/cli/index.ts gen",
     "test": "ts-node src/cli/index.ts test",
     "list": "ts-node src/cli/index.ts list",
     "stats": "ts-node src/cli/index.ts stats"
   },
-  "keywords": ["leetcode", "cli", "practice", "algorithms"],
+  "keywords": [
+    "leetcode",
+    "cli",
+    "practice",
+    "algorithms"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "commander": "^11.1.0"
+    "@types/turndown": "^5.0.6",
+    "axios": "^1.13.2",
+    "commander": "^11.1.0",
+    "turndown": "^7.2.2"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
